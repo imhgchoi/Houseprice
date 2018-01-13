@@ -59,3 +59,38 @@ train_dev$MiscFeature[is.na(train_dev$MiscFeature)] <- 'None'
 train_dev$MiscFeature <- as.factor(train_dev$MiscFeature)
 
 
+
+plot(train_dev$LotFrontage, train_dev$LotArea)
+plot(train_dev$LotFrontage**2, train_dev$LotArea)
+plot(train_dev$LotFrontage, train_dev$GrLivArea)
+
+
+
+plot(train_dev$MSZoning)
+plot(train_dev$LotFrontage)
+plot(train_dev$Neighborhood, train_dev$LotFrontage,
+     main='Neighborhood & LotFrontage plot')
+plot(train_dev$Utilities)
+plot(train_dev$Exterior1st)
+plot(train_dev$MasVnrType)
+plot(train_dev$MasVnrArea)
+plot(train_dev$BsmtFinSF1)
+plot(train_dev$BsmtFinSF2)
+plot(train_dev$BsmtUnfSF)
+plot(test$BsmtUnfSF)
+plot(train_dev$TotalBsmtSF)
+plot(test$TotalBsmtSF)
+plot(train_dev$BsmtFullBath)
+plot(train_dev$BsmtHalfBath)
+plot(train_dev$KitchenQual)
+plot(test$KitchenQual)
+plot(train_dev$Functional)
+plot(train_dev$GarageType)
+plot(train_dev$GarageYrBlt)
+plot(train_dev$GarageType, train_dev$GarageYrBlt)
+plot(train_dev$GarageCars)
+plot(train_dev$GarageType, train_dev$GarageCars)
+plot(train_dev$GarageArea)
+plot(train_dev$GarageType, train_dev$GarageArea)
+plot(train_dev$SaleType)
+plot(train_dev$Electrical)

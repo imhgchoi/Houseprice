@@ -26,3 +26,19 @@ def na_proportion(na_col_td, na_col_test, train_dev, test) :
     plt.title('Missing Data Percentage of Features', fontsize=18)
 
     plt.savefig('D:/SourceCodes/github/Houseprice/visualizationResults/NAportion.png')
+    plt.close()
+
+def heatmap(train_dev, test) :
+    corrmat = train_dev.corr()
+    plt.subplots(figsize=(8,8))
+    plt.title('train_dev Correlation Heatmap', fontsize=18)
+    sns.heatmap(corrmat, vmax=0.85, square=True)
+    plt.savefig('D:/SourceCodes/github/Houseprice/visualizationResults/train_dev_heatmap.png')
+
+    corrmat = test.corr()
+    plt.subplots(figsize=(8,8))
+    plt.title('test Correlation Heatmap', fontsize=18)
+    sns.heatmap(corrmat, vmax=0.85, square=True)
+    plt.savefig('D:/SourceCodes/github/Houseprice/visualizationResults/test_heatmap.png')
+
+    plt.close()
