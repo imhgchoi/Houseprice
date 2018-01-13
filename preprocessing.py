@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-
+import visualization as viz
 
 def data_import():
     train_dev = pd.read_csv("D:/rawDataFiles/housePrice_train.csv")
@@ -38,4 +38,21 @@ def na_check(train_dev, test):
         dataset.Fence = dataset.Fence.replace(np.nan, 'NoFence')
         dataset.MiscFeature = dataset.MiscFeature.replace(np.nan, 'None')
 
-    print(train_dev.isnull())
+    na_col_td = []
+    na_col_test = []
+    for dataset in [train_dev, test] :
+        colnames = dataset.columns
+        for col in colnames :
+            if dataset[col].isnull().sum() != 0 :
+                if int(dataset.shape[1]) == 81 : na_col_td.append(col)
+                else : na_col_test.append(col)
+
+    print('train_dev NA : ' + str(na_col_td))
+    print('test NA : ' + str(na_col_test))
+    # train_dev NA : ['LotFrontage', 'MasVnrType', 'MasVnrArea', 'Electrical', 'GarageYrBlt']
+    # test NA : ['MSZoning', 'LotFrontage', 'Utilities', 'Exterior1st', 'Exterior2nd', 'MasVnrType', 'MasVnrArea', 'BsmtFinSF1',
+    #            'BsmtFinSF2', 'BsmtUnfSF', 'TotalBsmtSF', 'BsmtFullBath', 'BsmtHalfBath', 'KitchenQual', 'Functional',
+    #            'GarageYrBlt', 'GarageCars', 'GarageArea', 'SaleType']
+
+    viz.na_proportion(na_col_td, na_col_test, train_dev, test)
+    # features with high portion of NA : 'LotFrontage', 'GarageYrBlt'
