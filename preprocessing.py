@@ -16,12 +16,17 @@ def data_import():
 
 
 def preprocess(train_dev, test):
+    train_dev = target_normalizer(train_dev)
     high_corr, train_dev, test = na_check(train_dev, test)
     train_dev, test = add_feature(train_dev, test)
     train_dev, test = column_eliminate(high_corr, train_dev, test)
 
     train_dev['MSSubClass'] = str(train_dev['MSSubClass'])
     test['MSSubClass'] = str(test['MSSubClass'])
+    train_dev['MoSold'] = str(train_dev['MoSold'])
+    test['MoSold'] = str(train_dev['MoSold'])
+    train_dev['YrSold'] = str(train_dev['YrSold'])
+    test['YrSold'] = str(train_dev['YrSold'])
     print(train_dev.dtypes)
 
     train_dev_y = train_dev['SalePrice']
@@ -41,6 +46,12 @@ def preprocess(train_dev, test):
     X_train, X_dev, y_train, y_dev = train_test_split(X, y, random_state=1)
 
     return X_train, X_dev, y_train, y_dev, test
+
+
+def target_normalizer(train_dev) :
+    train_dev['SalePrice'] = np.log1p(train_dev['SalePrice'])
+    return train_dev
+
 
 
 def na_check(train_dev, test):
