@@ -20,6 +20,8 @@ def model(X_train, X_dev, y_train, y_dev):
 
 
 
+
+
 def RIDGE(X_train, X_dev, y_train, y_dev):
     RANDOM_STATE = None
     MAX_ITER = 5000000

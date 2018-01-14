@@ -36,14 +36,17 @@ def preprocess(train_dev, test):
     all_data = pd.concat((train_dev, test)).reset_index(drop=True)
     all_data = pd.get_dummies(all_data)
     train_dev = all_data[:train_dev_size]
+    train_dev_X = train_dev.copy()
     train_dev = pd.concat((train_dev, train_dev_y), axis=1)
     test = all_data[train_dev_size:]
+
 
     print(train_dev.shape)  #(1460, 302)
     print(test.shape)  #(1459, 301)
 
     X, y, test = scale(train_dev, test)
     X_train, X_dev, y_train, y_dev = train_test_split(X, y, random_state=1)
+
 
     return X_train, X_dev, y_train, y_dev, test
 
